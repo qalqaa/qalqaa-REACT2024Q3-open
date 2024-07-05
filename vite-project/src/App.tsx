@@ -1,11 +1,13 @@
 import { Component } from "react";
 import SearchInput from "./components/SearchInput";
 import SearchResults from "./components/SearchResults";
+import ErrorBoundary from "./components/ErrorBoundry";
 import axios from "axios";
 import "./App.css";
 
 interface IAppState {
   results: IResult[];
+  error: Error | null;
 }
 
 interface IResult {
@@ -18,6 +20,7 @@ class App extends Component<IResult, IAppState> {
     super(props);
     this.state = {
       results: [],
+      error: null,
     };
   }
 
@@ -35,17 +38,27 @@ class App extends Component<IResult, IAppState> {
       this.setState({ results: res.data.results });
     } catch (error) {
       console.error("Error", error);
+      this.setState({ error: error as Error });
     }
   };
 
+  throwError = () => {
+    throw new Error("Test error");
+  };
+
   render() {
-    const { results } = this.state;
+    const { results, error } = this.state;
 
     return (
-      <>
+      <ErrorBoundary>
         <SearchInput onSearch={this.getData} />
-        <SearchResults results={results} />
-      </>
+        <button onClick={this.throwError}>Throw Error</button>
+        {error ? (
+          <p>Error occurred while fetching data.</p>
+        ) : (
+          <SearchResults results={results} />
+        )}
+      </ErrorBoundary>
     );
   }
 }
