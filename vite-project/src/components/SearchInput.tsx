@@ -17,8 +17,16 @@ class SearchInput extends React.Component<
     this.state = { searchTerm: "" };
   }
 
+  componentDidMount() {
+    const savedTerm = localStorage.getItem("searchTerm");
+    if (savedTerm) {
+      this.setState({ searchTerm: savedTerm });
+    }
+  }
+
   handleSearch = () => {
     localStorage.setItem("searchTerm", this.state.searchTerm);
+    this.props.onSearch(this.state.searchTerm);
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

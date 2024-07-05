@@ -13,6 +13,10 @@ class SearchResults extends React.Component<ISearchResultsProps> {
   render() {
     const { results } = this.props;
 
+    if (!results || results.length === 0) {
+      return <p>No results found.</p>;
+    }
+
     return (
       <div>
         {results.map((result, index) => (
