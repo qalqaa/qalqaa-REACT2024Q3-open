@@ -4,10 +4,12 @@ import SearchResults from "./components/SearchResults";
 import ErrorBoundary from "./components/ErrorBoundry";
 import axios from "axios";
 import "./App.css";
+import Loader from "./components/Loader";
 
 interface IAppState {
   results: IResult[];
   error: Error | null;
+  isLoading: boolean;
 }
 
 interface IResult {
@@ -23,6 +25,7 @@ class App extends Component<IProps, IAppState> {
     this.state = {
       results: [],
       error: null,
+      isLoading: false,
     };
   }
 
@@ -34,13 +37,15 @@ class App extends Component<IProps, IAppState> {
     const url = searchTerm
       ? `https://swapi.dev/api/people/?search=${searchTerm}`
       : `https://swapi.dev/api/people/`;
-
+    this.setState({ isLoading: true });
     try {
       const res = await axios.get(url);
       this.setState({ results: res.data.results });
     } catch (error) {
       console.error("Error", error);
       this.setState({ error: error as Error });
+    } finally {
+      this.setState({ isLoading: false });
     }
   };
 
@@ -49,13 +54,15 @@ class App extends Component<IProps, IAppState> {
   };
 
   render() {
-    const { results, error } = this.state;
+    const { results, error, isLoading } = this.state;
 
     return (
       <ErrorBoundary>
         <SearchInput onSearch={this.getData} />
         <button onClick={this.throwError}>Throw Error</button>
-        {error ? (
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
           <p>Error occurred while fetching data.</p>
         ) : (
           <SearchResults results={results} />
