@@ -26,7 +26,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (this.state.hasError) {
       return <h1>Error Suspected</h1>;
     }
-    
+
     return this.props.children;
   }
 }
