@@ -15,8 +15,10 @@ interface IResult {
   description: string;
 }
 
-class App extends Component<IResult, IAppState> {
-  constructor(props: IResult) {
+interface IProps {}
+
+class App extends Component<IProps, IAppState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       results: [],
