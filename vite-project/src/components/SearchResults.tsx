@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "./Card";
 
 interface IResult {
   name: string;
@@ -18,10 +19,8 @@ const SearchResults: React.FC<ISearchResultsProps> = ({ results }) => {
   return (
     <div className="card-list">
       {results.map((result, index) => (
-        <div className="flex col card" key={index}>
-          <h3>{result.name}</h3>
-          <span>Gender: {result.gender}</span>
-          <span>Eye сolor: {result.eye_color}</span>
+        <div key={index}>
+          <Card result={result} />
         </div>
       ))}
     </div>

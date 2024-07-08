@@ -2,7 +2,8 @@ import { RouteObject, useRoutes } from "react-router-dom";
 import CardList from "../pages/CardList";
 import NotFound from "../pages/NotFound";
 
-import { MAIN_ROUTE, NOTFOUND_ROUTE } from "./routes-config";
+import { MAIN_ROUTE, NOTFOUND_ROUTE, CARD_ROUTE } from "./routes-config";
+import Card from "./Card";
 
 const MainRouter = () => {
   const paths: RouteObject[] = [
@@ -13,6 +14,10 @@ const MainRouter = () => {
     {
       path: MAIN_ROUTE,
       element: <CardList />,
+    },
+    {
+      path: `${CARD_ROUTE}/*`,
+      element: <Card />,
     },
   ];
 
