@@ -5,7 +5,7 @@ interface ISearchInputProps {
 }
 
 const SearchInput: React.FC<ISearchInputProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const savedTerm = localStorage.getItem("searchTerm");
