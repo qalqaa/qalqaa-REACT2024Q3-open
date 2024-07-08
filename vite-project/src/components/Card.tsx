@@ -47,18 +47,6 @@ const CardList: React.FC<ISearchResultsProps> = ({ result }) => {
 
   const cookedLocation = cookPath(location.pathname);
 
-  useEffect(() => {
-    if (location.pathname.split("/")[1] === `${CARD_ROUTE}`) {
-      setIsOpen(true);
-    }
-    if (result) {
-      setCache(result);
-    }
-    if (Object.keys(cache).length === 1) {
-      getData();
-    }
-  }, []);
-
   const getData = () => {
     if (cookedLocation) {
       const url = `https://swapi.dev/api/people/?search=${cookedLocation}`;
@@ -67,7 +55,7 @@ const CardList: React.FC<ISearchResultsProps> = ({ result }) => {
         .get(url)
         .then((res) => {
           setCache(res.data.results[0]);
-          getHomeWorld(res.data.results[0].homeworld); // Вызов getHomeWorld после успешного завершения getData
+          getHomeWorld(res.data.results[0].homeworld);
         })
         .catch((error) => {
           console.error("Error", error);
@@ -85,6 +73,19 @@ const CardList: React.FC<ISearchResultsProps> = ({ result }) => {
         console.error("Error", error);
       });
   };
+
+  useEffect(() => {
+    if (location.pathname.split("/")[1] === `${CARD_ROUTE}`) {
+      setIsOpen(true);
+    }
+    if (result) {
+      setCache(result);
+    }
+    if (Object.keys(cache).length === 1) {
+      getData();
+    }
+  }, []);
+
   return (
     <div className="flex col card">
       <h3>{cache.name}</h3>
