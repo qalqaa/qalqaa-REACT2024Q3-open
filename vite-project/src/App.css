@@ -1,8 +1,20 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.Navbar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: #131313;
+  width: 98.7%;
 }
 
 .logo {

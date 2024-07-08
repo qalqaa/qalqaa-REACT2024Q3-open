@@ -12,6 +12,12 @@ const SearchInput: React.FC<ISearchInputProps> = ({ onSearch }) => {
     if (savedTerm) {
       setSearchTerm(savedTerm);
     }
+
+    return () => {
+      if (searchTerm) {
+        localStorage.setItem("searchTerm", searchTerm);
+      }
+    };
   }, []);
 
   const handleSearch = () => {
