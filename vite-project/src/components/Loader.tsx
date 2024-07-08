@@ -1,8 +1,4 @@
-import { Component } from "react";
-
-class Loader extends Component {
-  render() {
-    return <div>Loading...</div>;
-  }
+function Loader() {
+  return <div>Loading...</div>;
 }
 export default Loader;
