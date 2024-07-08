@@ -8,13 +8,55 @@
   display: flex;
   gap: 10px;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px;
   background-color: #131313;
   width: 98.7%;
+}
+
+.flex {
+  display: flex;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.input {
+  margin-bottom: 10px;
+  justify-content: center;
+  gap: 5px;
+}
+
+.input-field {
+  display: flex;
+  gap: 5px;
+}
+
+.input-field input {
+  border-radius: 10px;
+  border: transparent;
+  padding: 5px 10px;
+}
+
+.card {
+  background-color: #131313;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin: 0;
+}
+
+.card-list {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 250px);
 }
 
 .logo {

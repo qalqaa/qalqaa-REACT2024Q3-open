@@ -30,7 +30,7 @@ const SearchInput: React.FC<ISearchInputProps> = ({ onSearch }) => {
   };
 
   return (
-    <div>
+    <div className="input-field">
       <input type="text" value={searchTerm} onChange={handleChange} />
       <button onClick={handleSearch}>Search</button>
     </div>

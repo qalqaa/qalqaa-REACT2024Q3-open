@@ -8,7 +8,8 @@ import Loader from "../components/Loader";
 
 interface IResult {
   name: string;
-  description: string;
+  eye_color?: string;
+  gender?: string;
 }
 
 const CardList: React.FC = () => {
@@ -42,8 +43,10 @@ const CardList: React.FC = () => {
 
   return (
     <ErrorBoundary>
-      <SearchInput onSearch={getData} />
-      <button onClick={throwError}>Throw Error</button>
+      <div className="flex input">
+        <SearchInput onSearch={getData} />
+        <button onClick={throwError}>Throw Error</button>
+      </div>
       {isLoading ? (
         <Loader />
       ) : error ? (
