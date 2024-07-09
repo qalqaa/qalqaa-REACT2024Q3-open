@@ -5,6 +5,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import axios from "axios";
 import "../App.css";
 import Loader from "../components/Loader";
+import BuggyComponent from '../components/BuggyComponent';
 
 interface IResult {
   name: string;
@@ -37,15 +38,12 @@ const CardList: React.FC = () => {
     }
   };
 
-  const throwError = () => {
-    throw new Error("Test error");
-  };
 
   return (
     <ErrorBoundary>
       <div className="flex input">
         <SearchInput onSearch={getData} />
-        <button onClick={throwError}>Throw Error</button>
+        <BuggyComponent />
       </div>
       {isLoading ? (
         <Loader />
@@ -57,5 +55,4 @@ const CardList: React.FC = () => {
     </ErrorBoundary>
   );
 };
-
 export default CardList;
