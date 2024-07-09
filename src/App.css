@@ -55,8 +55,12 @@
 
 .card-list {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
-  grid-template-columns: repeat(3, 250px);
+  width: 100%;
+  max-width: 600px; /* You can adjust this value */
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .logo {
