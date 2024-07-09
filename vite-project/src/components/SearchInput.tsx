@@ -35,7 +35,7 @@ class SearchInput extends React.Component<
 
   render() {
     return (
-      <div>
+      <div className="flex">
         <input
           type="text"
           value={this.state.searchTerm}

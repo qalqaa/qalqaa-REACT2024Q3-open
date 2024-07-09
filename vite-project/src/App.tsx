@@ -1,10 +1,11 @@
-import { Component } from "react";
-import SearchInput from "./components/SearchInput";
-import SearchResults from "./components/SearchResults";
-import ErrorBoundary from "./components/ErrorBoundary";
-import axios from "axios";
-import "./App.css";
-import Loader from "./components/Loader";
+import { Component } from 'react';
+import SearchInput from './components/SearchInput';
+import SearchResults from './components/SearchResults';
+import ErrorBoundary from './components/ErrorBoundary';
+import axios from 'axios';
+import './App.css';
+import Loader from './components/Loader';
+import BuggyComponent from './components/BuggyComponent';
 
 interface IAppState {
   results: IResult[];
@@ -30,7 +31,7 @@ class App extends Component<IProps, IAppState> {
   }
 
   componentDidMount() {
-    this.getData(localStorage.getItem("searchTerm") || "");
+    this.getData(localStorage.getItem('searchTerm') || '');
   }
 
   getData = async (searchTerm: string) => {
@@ -42,7 +43,7 @@ class App extends Component<IProps, IAppState> {
       const res = await axios.get(url);
       this.setState({ results: res.data.results });
     } catch (error) {
-      console.error("Error", error);
+      console.error('Error', error);
       this.setState({ error: error as Error });
     } finally {
       this.setState({ isLoading: false });
@@ -50,7 +51,7 @@ class App extends Component<IProps, IAppState> {
   };
 
   throwError = () => {
-    throw new Error("Test error");
+    throw new Error('Test error');
   };
 
   render() {
@@ -58,8 +59,10 @@ class App extends Component<IProps, IAppState> {
 
     return (
       <ErrorBoundary>
-        <SearchInput onSearch={this.getData} />
-        <button onClick={this.throwError}>Throw Error</button>
+        <div className='flex'>
+          <SearchInput onSearch={this.getData} />
+          <BuggyComponent />
+        </div>
         {isLoading ? (
           <Loader />
         ) : error ? (
