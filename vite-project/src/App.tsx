@@ -1,7 +1,7 @@
 import { Component } from "react";
 import SearchInput from "./components/SearchInput";
 import SearchResults from "./components/SearchResults";
-import ErrorBoundary from "./components/ErrorBoundry";
+import ErrorBoundary from "./components/ErrorBoundary";
 import axios from "axios";
 import "./App.css";
 import Loader from "./components/Loader";
