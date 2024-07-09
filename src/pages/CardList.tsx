@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import SearchInput from "../components/SearchInput";
-import SearchResults from "../components/SearchResults";
-import ErrorBoundary from "../components/ErrorBoundary";
-import axios from "axios";
-import "../App.css";
-import Loader from "../components/Loader";
+import React, { useEffect, useState } from 'react';
+import SearchInput from '../components/SearchInput';
+import SearchResults from '../components/SearchResults';
+import ErrorBoundary from '../components/ErrorBoundary';
+import axios from 'axios';
+import '../App.css';
+import Loader from '../components/Loader';
 import BuggyComponent from '../components/BuggyComponent';
 
 interface IResult {
@@ -19,7 +19,7 @@ const CardList: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    getData(localStorage.getItem("searchTerm") || "");
+    getData(localStorage.getItem('searchTerm') || '');
   }, []);
 
   const getData = async (searchTerm: string) => {
@@ -31,7 +31,7 @@ const CardList: React.FC = () => {
       const res = await axios.get(url);
       setResults(res.data.results);
     } catch (error) {
-      console.error("Error", error);
+      console.error('Error', error);
       setError(error as Error);
     } finally {
       setIsLoading(false);

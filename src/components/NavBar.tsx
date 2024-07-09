@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MAIN_ROUTE, CARD_ROUTE, CARD_DETAILED_ROUTE } from "./routes-config";
+import { MAIN_ROUTE, CARD_ROUTE, CARD_DETAILED_ROUTE } from "./MainRouter";
 
 const Navbar: React.FC = () => {
   return (
