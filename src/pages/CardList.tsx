@@ -17,6 +17,7 @@ const CardList: React.FC = () => {
   const [results, setResults] = useState<IResult[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     getData(localStorage.getItem('searchTerm') || '');

@@ -1,7 +1,4 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { CARD_ROUTE } from './MainRouter';
+import { useNavigate } from 'react-router-dom';
 
 interface IResult {
   name?: string;
@@ -19,87 +16,23 @@ interface IResult {
   vehicles?: string[];
 }
 
-interface IHomeworld {
-  name: string;
-}
-
 interface ISearchResultsProps {
-  result?: IResult;
+  result: IResult;
 }
 
 const Card: React.FC<ISearchResultsProps> = ({ result }) => {
-  const [cache, setCache] = useState<IResult>({
-    name: '',
-  });
-  const [homeworld, setHomeworld] = useState<IHomeworld>({
-    name: '',
-  });
-
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const cookPath = (path: string) => {
-    const segments = path.split('/');
-    return segments[segments.length - 1];
-  };
-
-  const cookedLocation = cookPath(location.pathname);
-
-  const getData = () => {
-    if (cookedLocation) {
-      const url = `https://swapi.dev/api/people/?search=${cookedLocation}`;
-
-      axios
-        .get(url)
-        .then((res) => {
-          setCache(res.data.results[0]);
-          getHomeWorld(res.data.results[0].homeworld);
-        })
-        .catch((error) => {
-          console.error('Error', error);
-        });
-    }
-  };
-
-  const getHomeWorld = (url: string) => {
-    axios
-      .get(url)
-      .then((res) => {
-        setHomeworld(res.data);
-      })
-      .catch((error) => {
-        console.error('Error', error);
-      });
-  };
-
-  useEffect(() => {
-    if (location.pathname.split('/')[1] === `${CARD_ROUTE}`) {
-      setIsOpen(true);
-    }
-    if (result) {
-      setCache(result);
-    }
-    if (Object.keys(cache).length === 1) {
-      getData();
-    }
-  }, []);
 
   return (
     <>
       <div className="flex col card">
-        <h3>{cache.name}</h3>
-        <span>Gender: {cache.gender}</span>
-        <span>Eye Color: {cache.eye_color}</span>
-        {isOpen ? <span>Homeworld: {homeworld.name}</span> : ''}
-        {isOpen ? <span>Birth Year: {cache.birth_year}</span> : ''}
-        {isOpen ? <span>Hair Color: {cache.hair_color}</span> : ''}
-        {isOpen ? <span>Height: {cache.height}</span> : ''}
-        {isOpen ? <span>Mass: {cache.mass}</span> : ''}
-        {isOpen ? <span>Skin Color: {cache.skin_color}</span> : ''}
+        <h3>{result.name}</h3>
+        <span>Gender: {result.gender}</span>
+        <span>Eye Color: {result.eye_color}</span>
 
-        <button onClick={() => navigate(`/card/${cache.name}`)}>Details</button>
+        <button onClick={() => navigate(`/card/${result.name}`)}>
+          Details
+        </button>
       </div>
     </>
   );
