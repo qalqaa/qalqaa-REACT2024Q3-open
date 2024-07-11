@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import SearchInput from './components/SearchInput';
 import SearchResults from './components/SearchResults';
 import ErrorBoundary from './components/ErrorBoundary';
