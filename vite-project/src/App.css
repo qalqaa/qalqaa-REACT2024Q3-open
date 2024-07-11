@@ -18,9 +18,19 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.flex{
+.flex {
   display: flex;
-  gap: 5px
+  gap: 5px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #282c34;
+  padding: 1em;
+  margin: 10px 0px;
+  border-radius: 10px;
 }
 
 @keyframes logo-spin {
@@ -36,10 +46,6 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
-  padding: 2em;
 }
 
 .read-the-docs {

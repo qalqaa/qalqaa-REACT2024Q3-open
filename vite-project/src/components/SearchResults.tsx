@@ -1,8 +1,9 @@
-import React from "react";
+import React from 'react';
 
 interface IResult {
   name: string;
-  description: string;
+  eye_color: string;
+  hair_color: string;
 }
 
 interface ISearchResultsProps {
@@ -20,9 +21,10 @@ class SearchResults extends React.Component<ISearchResultsProps> {
     return (
       <div>
         {results.map((result, index) => (
-          <div key={index}>
+          <div key={index} className='card'>
             <h3>{result.name}</h3>
-            <p>{result.description}</p>
+            <span>Eye Color: {result.eye_color}; </span>
+            <span>Hair Color: {result.hair_color}</span>
           </div>
         ))}
       </div>

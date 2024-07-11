@@ -15,7 +15,8 @@ interface IAppState {
 
 interface IResult {
   name: string;
-  description: string;
+  eye_color: string;
+  hair_color: string;
 }
 
 interface IProps {}
@@ -59,7 +60,7 @@ class App extends Component<IProps, IAppState> {
 
     return (
       <ErrorBoundary>
-        <div className='flex'>
+        <div className="flex">
           <SearchInput onSearch={this.getData} />
           <BuggyComponent />
         </div>
